@@ -17,7 +17,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b === 0) {
-    return "Error: Division by zero is not allowed.";
+    return "Er.: Division by zero not allowed ⛔.";
   } else {
     return a / b;
   }
@@ -34,7 +34,12 @@ function operate(firstNumber, sign, secondNumber) {
   } else if (sign === "*") {
     return multiply(firstNumber, secondNumber);
   } else if (sign === "/") {
-    return divide(firstNumber, secondNumber).toFixed(2);
+    const resultOfDivision = divide(firstNumber, secondNumber);
+    if (!isNaN(resultOfDivision)) {
+      return resultOfDivision.toFixed(2);
+    } else {
+      return resultOfDivision;
+    }
   }
 }
 
@@ -103,6 +108,9 @@ function buttonController(event) {
       sign = null;
       secondNumber = "";
       screen.textContent = firstNumber;
+      if (isNaN(firstNumber)) {
+        setTimeout(clear, 2000);
+      }
     } else if (
       event.target.id === "+" ||
       event.target.id === "-" ||
