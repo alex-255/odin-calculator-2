@@ -13,3 +13,100 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
+
+let firstNumber = "";
+let sign;
+let secondNumber = "";
+
+function operate(firstNumber, sign, secondNumber) {
+  firstNumber = parseInt(firstNumber);
+  secondNumber = parseInt(secondNumber);
+
+  if (sign === "+") {
+    return add(firstNumber, secondNumber);
+  } else if (sign === "-") {
+    return subtract(firstNumber, secondNumber);
+  } else if (sign === "*") {
+    return multiply(firstNumber, secondNumber);
+  } else if (sign === "/") {
+    return divide(firstNumber, secondNumber);
+  }
+}
+
+let screen = document.querySelector("#screen");
+
+let buttons = document.querySelectorAll(".btn");
+buttons.forEach((button) => {
+  button.addEventListener("click", (event) => buttonController(event));
+});
+
+function buttonController(event) {
+  if (
+    (event.target.id === "1" ||
+      event.target.id === "2" ||
+      event.target.id === "3" ||
+      event.target.id === "4" ||
+      event.target.id === "5" ||
+      event.target.id === "6" ||
+      event.target.id === "7" ||
+      event.target.id === "8" ||
+      event.target.id === "9" ||
+      event.target.id === "0") &&
+    sign === undefined
+  ) {
+    firstNumber += event.target.id;
+    screen.textContent = firstNumber;
+  }
+
+  if (
+    (event.target.id === "+" ||
+      event.target.id === "-" ||
+      event.target.id === "*" ||
+      event.target.id === "/") &&
+    firstNumber
+  ) {
+    sign = event.target.id;
+    screen.textContent = firstNumber + sign;
+  }
+
+  if (firstNumber && sign) {
+    if (
+      event.target.id === "1" ||
+      event.target.id === "2" ||
+      event.target.id === "3" ||
+      event.target.id === "4" ||
+      event.target.id === "5" ||
+      event.target.id === "6" ||
+      event.target.id === "7" ||
+      event.target.id === "8" ||
+      event.target.id === "9" ||
+      event.target.id === "0"
+    ) {
+      secondNumber += event.target.id;
+      screen.textContent = firstNumber + sign + secondNumber;
+    }
+  }
+
+  if (firstNumber && sign && secondNumber) {
+    if (event.target.id === "equals") {
+      screen.textContent = operate(firstNumber, sign, secondNumber);
+    } else if (
+      event.target.id === "+" ||
+      event.target.id === "-" ||
+      event.target.id === "*" ||
+      event.target.id === "/"
+    ) {
+      firstNumber = operate(firstNumber, sign, secondNumber);
+      sign = event.target.id;
+      secondNumber = "";
+      screen.textContent = firstNumber + sign;
+    }
+  }
+
+  if (event.target.id === "clear") {
+    firstNumber = "";
+    sign = undefined;
+    secondNumber = "";
+    screen.textContent = "0";
+  }
+}
