@@ -31,7 +31,7 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 400px;
+  width: 300px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 50px;
@@ -75,7 +75,7 @@ body {
 
 header {
   margin: 0 auto;
-  width: 400px;
+  width: 300px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
