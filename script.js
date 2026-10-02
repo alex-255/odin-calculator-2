@@ -118,3 +118,16 @@ function buttonController(event) {
     clear();
   }
 }
+
+// DARK MODE logic
+const themeToggleBtn = document.getElementById("theme-toggle");
+
+themeToggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    themeToggleBtn.textContent = "☀️ Light Mode";
+  } else {
+    themeToggleBtn.textContent = "🌙 Dark Mode";
+  }
+});

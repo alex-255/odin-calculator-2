@@ -26,6 +26,7 @@ body {
     background-color var(--transition-speed),
     color var(--transition-speed);
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 .container {
@@ -39,6 +40,7 @@ body {
   transition: background-color var(--transition-speed);
   border: 2px solid var(--text-color);
   padding: 5px;
+  box-sizing: border-box;
 }
 
 #screen {
@@ -71,5 +73,14 @@ body {
   color: white;
 }
 
-#equals {
+header {
+  margin: 0 auto;
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+header #theme-toggle {
+  margin: 5px 0px;
 }
