@@ -78,7 +78,8 @@ function buttonController(event) {
       event.target.id === "-" ||
       event.target.id === "*" ||
       event.target.id === "/") &&
-    firstNumber
+    firstNumber &&
+    !secondNumber
   ) {
     sign = event.target.id;
     screen.textContent = firstNumber + sign;
@@ -117,10 +118,14 @@ function buttonController(event) {
       event.target.id === "*" ||
       event.target.id === "/"
     ) {
+      console.log(firstNumber);
+      console.log(sign);
+      console.log(secondNumber);
       firstNumber = operate(firstNumber, sign, secondNumber);
+      console.log(firstNumber);
       sign = event.target.id;
       secondNumber = "";
-      screen.textContent = firstNumber + sign;
+      screen.textContent = `${firstNumber}${sign}`;
     }
   }
 
