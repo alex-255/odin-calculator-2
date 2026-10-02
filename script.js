@@ -24,8 +24,8 @@ function divide(a, b) {
 }
 
 function operate(firstNumber, sign, secondNumber) {
-  firstNumber = parseInt(firstNumber);
-  secondNumber = parseInt(secondNumber);
+  firstNumber = parseFloat(firstNumber);
+  secondNumber = parseFloat(secondNumber);
 
   if (sign === "+") {
     return add(firstNumber, secondNumber);
@@ -34,7 +34,7 @@ function operate(firstNumber, sign, secondNumber) {
   } else if (sign === "*") {
     return multiply(firstNumber, secondNumber);
   } else if (sign === "/") {
-    return divide(firstNumber, secondNumber);
+    return divide(firstNumber, secondNumber).toFixed(2);
   }
 }
 
@@ -99,7 +99,10 @@ function buttonController(event) {
 
   if (firstNumber && sign && secondNumber) {
     if (event.target.id === "equals") {
-      screen.textContent = operate(firstNumber, sign, secondNumber);
+      firstNumber = operate(firstNumber, sign, secondNumber);
+      sign = null;
+      secondNumber = "";
+      screen.textContent = firstNumber;
     } else if (
       event.target.id === "+" ||
       event.target.id === "-" ||
