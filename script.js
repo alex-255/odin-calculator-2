@@ -100,7 +100,6 @@ function buttonController(event) {
   if (firstNumber && sign && secondNumber) {
     if (event.target.id === "equals") {
       screen.textContent = operate(firstNumber, sign, secondNumber);
-      setTimeout(clear, 2000);
     } else if (
       event.target.id === "+" ||
       event.target.id === "-" ||
