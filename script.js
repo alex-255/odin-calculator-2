@@ -1,3 +1,8 @@
+let firstNumber = "";
+let sign;
+let secondNumber = "";
+let screen = document.querySelector("#screen");
+
 function add(a, b) {
   return a + b;
 }
@@ -11,12 +16,12 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  if (b === 0) {
+    return "Error: Division by zero is not allowed.";
+  } else {
+    return a / b;
+  }
 }
-
-let firstNumber = "";
-let sign;
-let secondNumber = "";
 
 function operate(firstNumber, sign, secondNumber) {
   firstNumber = parseInt(firstNumber);
@@ -33,7 +38,12 @@ function operate(firstNumber, sign, secondNumber) {
   }
 }
 
-let screen = document.querySelector("#screen");
+function clear() {
+  firstNumber = "";
+  sign = undefined;
+  secondNumber = "";
+  screen.textContent = "0";
+}
 
 let buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
@@ -90,6 +100,7 @@ function buttonController(event) {
   if (firstNumber && sign && secondNumber) {
     if (event.target.id === "equals") {
       screen.textContent = operate(firstNumber, sign, secondNumber);
+      setTimeout(clear, 2000);
     } else if (
       event.target.id === "+" ||
       event.target.id === "-" ||
@@ -104,9 +115,6 @@ function buttonController(event) {
   }
 
   if (event.target.id === "clear") {
-    firstNumber = "";
-    sign = undefined;
-    secondNumber = "";
-    screen.textContent = "0";
+    clear();
   }
 }
